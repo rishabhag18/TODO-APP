@@ -10,10 +10,16 @@ const Todo = () => {
     }
     const handleFormSubmit=(event)=>{
         event.preventDefault();
+        if(!inputValue) {
+            setInputValue("")
+            return
+        } 
+        if(task.includes(inputValue)) return
         setTask((prevTask)=>[...prevTask,inputValue])
-        console.log(inputValue)
+        setInputValue("")
+        console.log(task)
     }
-    
+     
   return (
     <section className="todo-container">
       <header>
