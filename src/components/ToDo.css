@@ -4,7 +4,9 @@
   display: flex;
   justify-content: center;
 } */
-
+*{
+  margin: 0;
+}
 .todo-container {
   align-items: center;
   display: flex;
@@ -68,7 +70,8 @@ form input {
   transition: background-color 200ms ease-in-out;
   width: 100%;
   background-color: #f2f3f4;
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
+  color: black;
 }
 
 form input:hover {
@@ -94,11 +97,12 @@ form button:hover {
 }
 
 form button {
-  padding: 10.8px;
+  padding: 16.2px;
   font-size: 17px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   min-width: 100px;
+
   background-color: #5dade2;
   color: var(--secondary-color);
 }

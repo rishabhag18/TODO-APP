@@ -1,7 +1,7 @@
 import Todo from "./components/Todo";
 const App=()=>{
-  return <>
+  return <section>
   <Todo/>
-  </>
+  </section>
 }
 export default App;
