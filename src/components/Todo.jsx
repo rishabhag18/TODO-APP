@@ -10,8 +10,11 @@ const Todo = () => {
   const [task, setTask] = useState([]);
   //todo form submit handler
   const handleFormSubmit = (inputValue) => {
-    if (!inputValue) return;
-    if (task.includes(inputValue)) return;
+    const {id,content,checked}=inputValue;
+    if (!content) return;
+    //if (task.includes(content)) return;
+    const ifTodoContentMatched = task.find((currTask)=>currTask.content===content)
+    if(ifTodoContentMatched) return;
     setTask((prevTask) => [...prevTask, inputValue]);
   };
   return (
