@@ -3,12 +3,16 @@ import "./todo1.css";
 import { MdCheck } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 
+
 const Todo = () => {
+    //todo add task event handler
     const [inputValue,setInputValue]=useState("");
     const [task,setTask]=useState([]);
+    const [dateTime,setDateTime]=useState("")
     const handleInputChange=(value)=>{
         setInputValue(()=>value)
     }
+    //todo form submit handler
     const handleFormSubmit=(event)=>{
         event.preventDefault();
         if(!inputValue) {
@@ -20,11 +24,21 @@ const Todo = () => {
         setInputValue("")
         console.log(task)
     }
+     //todo date and time handler
+     const timeNow=new Date();
+     setInterval(()=>{
+        const timeDate={
+            Date: timeNow.toLocaleDateString(),
+            Time: timeNow.toLocaleTimeString(),
+         }
+         setDateTime(`${timeDate.Date} - ${timeDate.Time}`)
+     },1000)
      
   return (
     <section className="todo-container">
       <header>
         <h1>ToDo List</h1>
+        <h2 className="date-time">{dateTime}</h2>
       </header>
       <section className="form">
         <form onSubmit={handleFormSubmit}>
