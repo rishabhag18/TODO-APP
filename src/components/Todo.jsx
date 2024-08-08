@@ -38,6 +38,10 @@ const Todo = () => {
          return ()=>clearInterval(interval)
      },[])
      
+     const hanleDeleteTodo=(currTask)=>{
+        const updatedTask=task.filter((value)=>currTask!==value)
+        setTask(updatedTask)
+     }
      
   return (
     <section className="todo-container">
@@ -66,7 +70,7 @@ const Todo = () => {
                         <button className="check-btn">
                             <MdCheck/>
                         </button>
-                        <button className="delete-btn">
+                        <button className="delete-btn" onClick={()=>hanleDeleteTodo(currTask)}>
                             <MdDeleteForever />
                         </button>
                     </li>
