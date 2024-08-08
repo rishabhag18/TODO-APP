@@ -12,15 +12,24 @@ const Todo = () => {
   const handleFormSubmit = (inputValue) => {
     const { id, content, checked } = inputValue;
     if (!content) return;
-    //if (task.includes(content)) return;
     const ifTodoContentMatched = task.find(
       (currTask) => currTask.content === content
     );
     if (ifTodoContentMatched) return;
     setTask((prevTask) => [...prevTask, { id, content, checked }]);
   };
-  const hanleDeleteTodo = (value) => {
+  const handleDeleteTodo = (value) => {
     const updatedTask = task.filter((curTask) => curTask.content !== value);
+    setTask(updatedTask);
+  };
+  const handleCheckedTodo = (myData) => {
+    const updatedTask=task.map((curTask)=>{
+      if(curTask.content==myData){
+        return {...curTask,checked:!curTask.checked}
+      }else{
+        return curTask;
+      }
+    });
     setTask(updatedTask);
   };
   return (
@@ -35,9 +44,11 @@ const Todo = () => {
           {task.map((currTask) => {
             return (
               <TodoTask
-                data={currTask.content}
-                hanleDeleteTodo={hanleDeleteTodo}
                 key={currTask.id}
+                data={currTask.content}
+                checked={currTask.checked}
+                handleDeleteTodo={handleDeleteTodo}
+                onHandleCheckedTodo={handleCheckedTodo}
               />
             );
           })}
