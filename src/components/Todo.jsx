@@ -10,12 +10,18 @@ const Todo = () => {
   const [task, setTask] = useState([]);
   //todo form submit handler
   const handleFormSubmit = (inputValue) => {
-    const {id,content,checked}=inputValue;
+    const { id, content, checked } = inputValue;
     if (!content) return;
     //if (task.includes(content)) return;
-    const ifTodoContentMatched = task.find((currTask)=>currTask.content===content)
-    if(ifTodoContentMatched) return;
-    setTask((prevTask) => [...prevTask, inputValue]);
+    const ifTodoContentMatched = task.find(
+      (currTask) => currTask.content === content
+    );
+    if (ifTodoContentMatched) return;
+    setTask((prevTask) => [...prevTask, { id, content, checked }]);
+  };
+  const hanleDeleteTodo = (value) => {
+    const updatedTask = task.filter((curTask) => curTask.content !== value);
+    setTask(updatedTask);
   };
   return (
     <section className="todo-container">
@@ -23,9 +29,21 @@ const Todo = () => {
         <h1>ToDo List</h1>
         <DateTime />
       </header>
-      <TodoForm onAddTodo={handleFormSubmit}/>
-      <TodoTask task={task} setTask={setTask}/> 
-      <ClearTodo setTask={setTask}/>
+      <TodoForm onAddTodo={handleFormSubmit} />
+      <section className="myUnOrdList">
+        <ul>
+          {task.map((currTask) => {
+            return (
+              <TodoTask
+                data={currTask.content}
+                hanleDeleteTodo={hanleDeleteTodo}
+                key={currTask.id}
+              />
+            );
+          })}
+        </ul>
+      </section>
+      <ClearTodo setTask={setTask} />
     </section>
   );
 };
