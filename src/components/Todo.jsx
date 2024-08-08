@@ -4,45 +4,47 @@ import { MdCheck } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import { useEffect } from "react";
 
-
 const Todo = () => {
-    //todo add task event handler
-    const [inputValue,setInputValue]=useState("");
-    const [task,setTask]=useState([]);
-    const [dateTime,setDateTime]=useState("")
-    const handleInputChange=(value)=>{
-        setInputValue(()=>value)
+  //todo add task event handler
+  const [inputValue, setInputValue] = useState("");
+  const [task, setTask] = useState([]);
+  const [dateTime, setDateTime] = useState("");
+  const handleInputChange = (value) => {
+    setInputValue(() => value);
+  };
+  //todo form submit handler
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    if (!inputValue) {
+      setInputValue("");
+      return;
     }
-    //todo form submit handler
-    const handleFormSubmit=(event)=>{
-        event.preventDefault();
-        if(!inputValue) {
-            setInputValue("")
-            return
-        } 
-        if(task.includes(inputValue)) return
-        setTask((prevTask)=>[...prevTask,inputValue])
-        setInputValue("")
-        console.log(task)
-    }
-     //todo date and time handler
-     useEffect(()=>{
-        const interval =setInterval(()=>{
-            const timeNow=new Date();
-            const timeDate={
-                Date: timeNow.toLocaleDateString(),
-                Time: timeNow.toLocaleTimeString(),
-             }
-             setDateTime(`${timeDate.Date} - ${timeDate.Time}`)
-         },1000)
-         return ()=>clearInterval(interval)
-     },[])
-     
-     const hanleDeleteTodo=(currTask)=>{
-        const updatedTask=task.filter((value)=>currTask!==value)
-        setTask(updatedTask)
-     }
-     
+    if (task.includes(inputValue)) return;
+    setTask((prevTask) => [...prevTask, inputValue]);
+    setInputValue("");
+    console.log(task);
+  };
+  //todo date and time handler
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const timeNow = new Date();
+      const timeDate = {
+        Date: timeNow.toLocaleDateString(),
+        Time: timeNow.toLocaleTimeString(),
+      };
+      setDateTime(`${timeDate.Date} - ${timeDate.Time}`);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+//delete task in todo 
+  const hanleDeleteTodo = (currTask) => {
+    const updatedTask = task.filter((value) => currTask !== value);
+    setTask(updatedTask);
+  };
+  // clear complete todo
+  const handleClearTodo = () => {
+    setTask([]);
+  };
   return (
     <section className="todo-container">
       <header>
@@ -52,33 +54,45 @@ const Todo = () => {
       <section className="form">
         <form onSubmit={handleFormSubmit}>
           <div>
-            <input type="text" className="todo-input" autoComplete="off"  value={inputValue} onChange={(event)=> handleInputChange(event.target.value)}/>
+            <input
+              type="text"
+              className="todo-input"
+              autoComplete="off"
+              value={inputValue}
+              onChange={(event) => handleInputChange(event.target.value)}
+            />
           </div>
           <div>
-            <button type="submit" className="todo-btn">Add Task</button>
+            <button type="submit" className="todo-btn">
+              Add Task
+            </button>
           </div>
         </form>
       </section>
       <section className="myUnOrdList">
         <ul>
-            {
-                task.map((currTask,index)=>{
-                    return <li key={index} className="todo-item">
-                        <span>
-                            {currTask}
-                        </span>
-                        <button className="check-btn">
-                            <MdCheck/>
-                        </button>
-                        <button className="delete-btn" onClick={()=>hanleDeleteTodo(currTask)}>
-                            <MdDeleteForever />
-                        </button>
-                    </li>
-                    
-                })
-
-            }
+          {task.map((currTask, index) => {
+            return (
+              <li key={index} className="todo-item">
+                <span>{currTask}</span>
+                <button className="check-btn">
+                  <MdCheck />
+                </button>
+                <button
+                  className="delete-btn"
+                  onClick={() => hanleDeleteTodo(currTask)}
+                >
+                  <MdDeleteForever />
+                </button>
+              </li>
+            );
+          })}
         </ul>
+      </section>
+      <section>
+        <button className="clear-btn" onClick={handleClearTodo}>
+          Clear All
+        </button>
       </section>
     </section>
   );
