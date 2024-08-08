@@ -169,6 +169,7 @@ border-radius: 0.3rem;
 -moz-border-radius: 0.3rem;
 -ms-border-radius: 0.3rem;
 -o-border-radius: 0.3rem;
+cursor: pointer;
 }
 .clear-btn:hover {
 background-color:
