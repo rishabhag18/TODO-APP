@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./todo1.css";
-import { FaUserAstronaut } from "react-icons/fa";
+import { MdCheck } from "react-icons/md";
 
 const Todo = () => {
     const [inputValue,setInputValue]=useState("");
@@ -34,6 +34,22 @@ const Todo = () => {
             <button type="submit" className="todo-btn">Add Task</button>
           </div>
         </form>
+      </section>
+      <section>
+        <ul>
+            {
+                task.map((currTask,index)=>{
+                    return <li key={index}>
+                        <span>
+                            {currTask}
+                        </span>
+                        <button><MdCheck/></button>
+                    </li>
+                    
+                })
+
+            }
+        </ul>
       </section>
     </section>
   );
