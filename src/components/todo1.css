@@ -102,14 +102,15 @@ margin-right: 3.2rem;
 .myUnOrdList {
 display: flex;
 justify-content: center;
-align-items: center; max-width: 1200px;
+align-items: center; 
+max-width: 1200px;
 }
 .todo-list {
 min-width: 25%;
 list-style: none;
 }
 .todo-item { 
-    margin: 2.4rem;
+    margin: 1.4rem;
 /*word-wrap: break-word; */ /*flex-wrap: wrap;
 */
 font-size: 20px;
@@ -119,11 +120,11 @@ transition: background-color 200ms ease-in-out;
 background-color: #f2f3f4;
 min-width: 35rem;
 max-width: 40rem;
-padding: 1.6rem 3rem;
+padding: .6rem 1.2rem;
 display: grid;
 grid-template-columns: 1fr 0.3fr 0.3fr;
 justify-content: start;
-gap: 1.6rem;
+gap: 1rem;
 /*align-items: center;
 */ /*wrapsthelinks*/
 overflow-wrap: anywhere;
