@@ -7,7 +7,12 @@ import ClearTodo from "./ClearTodo";
 
 const Todo = () => {
   //todo add task event handler
-  const [task, setTask] = useState([]);
+  const localStorageKey="reactTask";
+  const [task, setTask] = useState(()=>{
+    const todoData=localStorage.getItem(localStorageKey);
+    if(!todoData) return [];
+    return JSON.parse(todoData);
+  });
   //todo form submit handler
   const handleFormSubmit = (inputValue) => {
     const { id, content, checked } = inputValue;
@@ -32,6 +37,9 @@ const Todo = () => {
     });
     setTask(updatedTask);
   };
+
+  //todo LocalStorage data saving
+  localStorage.setItem(localStorageKey,JSON.stringify(task));
   return (
     <section className="todo-container">
       <header>
